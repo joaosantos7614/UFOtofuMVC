@@ -18,15 +18,19 @@ namespace UFOtofuMVC.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
         public IActionResult Index()
+        {
+            Palindrome palindrome = new();
+            return View(palindrome);
+        }
+
+        public IActionResult About()
         {
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

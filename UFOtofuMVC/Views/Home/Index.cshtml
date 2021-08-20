@@ -1,8 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model UFOtofuMVC.Models.Palindrome
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <img src="~/img/image3.png" />
+    <hr />
+    <p>This is an MCV webapp that checks if a string is a palindrome</p>
+
 </div>
+<form class="row gy-2 gx-3" asp-action="Index" asp-controller="Home" method="post">
+    <div class="col-12 d-flex align-items-center">
+        <input asp-for="InputString" class="form-control" value="@Model.InputString" placeholder="type a word or phrase" />
+    </div>
+
+    <div class="col-12 d-flex align-items-center">
+        <button id="btnSubmit" type="submit" class="btn btn-dark btn-lg">
+            Palindrome Test
+        </button>
+    </div>
+</form>
