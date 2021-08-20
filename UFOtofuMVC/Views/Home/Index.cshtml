@@ -3,20 +3,28 @@
 }
 @model UFOtofuMVC.Models.Palindrome
 
-<div class="text-center">
-    <img src="~/img/image3.png" />
-    <hr />
-    <p>This is an MCV webapp that checks if a string is a palindrome</p>
+<div class="container">
+    <div class="text-center">
+        <div>
+        <img src="~/img/image3.png" />
+        </div>
+        <hr />
+        <h4>This is a MCV webapp that checks if a string is a palindrome :)</h4>
+        <p>(a palindrome is a word or phrase that reads exactly the same when read backwards)</p>
 
+    </div>
+    <form class="text-center" asp-action="Index" asp-controller="Home" method="post">
+        <div>
+            <input class="col-12 col-sm-6" asp-for="InputString" value="@Model.InputString" placeholder="type a word or phrase, example: UFO TOFU or TACO CAT" required />
+        </div>
+
+        <div class="p-1">
+            <button id="btnSubmit" type="submit" class="btn btn-success btn-lg">
+                Palindrome Test
+            </button>
+        </div>
+    </form>
+    <div class="text-center p-1">
+        <h4>@Model.Message</h4>
+    </div>
 </div>
-<form class="row gy-2 gx-3" asp-action="Index" asp-controller="Home" method="post">
-    <div class="col-12 d-flex align-items-center">
-        <input asp-for="InputString" class="form-control" value="@Model.InputString" placeholder="type a word or phrase" />
-    </div>
-
-    <div class="col-12 d-flex align-items-center">
-        <button id="btnSubmit" type="submit" class="btn btn-dark btn-lg">
-            Palindrome Test
-        </button>
-    </div>
-</form>

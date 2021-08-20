@@ -18,12 +18,40 @@ namespace UFOtofuMVC.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Index()
         {
             Palindrome palindrome = new();
             return View(palindrome);
         }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken] not needed at the moment
+        public IActionResult Index(Palindrome palindrome)
+        {
+            string inputString = palindrome.InputString;
+            string revString = "";
+            inputString = inputString.Replace(" ","").ToLower();
+            for (int i = inputString.Length-1 ; i >= 0 ; i--)
+            {
+                revString += inputString[i];
+            }
+            palindrome.RevString = revString;
+            if(revString == inputString)
+            {
+                palindrome.IsPalindrome = true;
+                palindrome.Message = $"{palindrome.InputString} when reversed is {revString}, the string is a palindrome!";
+            }
+            else
+            {
+                palindrome.IsPalindrome = false;
+                palindrome.Message = $"{palindrome.InputString} when reversed is {revString}, the string is NOT a palindrome...";
+            }
+
+            return View(palindrome);
+        }
+
+
 
         public IActionResult About()
         {
