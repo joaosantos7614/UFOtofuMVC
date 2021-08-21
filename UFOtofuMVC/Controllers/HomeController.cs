@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using UFOtofuMVC.Models;
+using System.Text.RegularExpressions;
 
 namespace UFOtofuMVC.Controllers
 {
@@ -31,7 +32,8 @@ namespace UFOtofuMVC.Controllers
         {
             string inputString = palindrome.InputString;
             string revString = "";
-            inputString = inputString.Replace(" ","").ToLower();
+            inputString = inputString.ToLower(); //converts to lowercase
+            inputString = Regex.Replace(inputString, @"[\W]", ""); // removes everything that is not a letter
             for (int i = inputString.Length-1 ; i >= 0 ; i--)
             {
                 revString += inputString[i];
