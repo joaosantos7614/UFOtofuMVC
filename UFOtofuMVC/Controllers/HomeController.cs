@@ -19,11 +19,12 @@ namespace UFOtofuMVC.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        //[HttpGet]
         public IActionResult Index()
         {
             Palindrome palindrome = new();
             return View(palindrome);
+            return View();
         }
 
         [HttpPost]
@@ -33,20 +34,23 @@ namespace UFOtofuMVC.Controllers
             string inputString = palindrome.InputString;
             string revString = "";
             inputString = inputString.ToLower(); //converts to lowercase
-            inputString = Regex.Replace(inputString, @"[\W]", ""); // removes everything that is not a letter
-            for (int i = inputString.Length-1 ; i >= 0 ; i--)
+            inputString = Regex.Replace(inputString, @"[^a-z0-9]+", ""); // removes everything that is not a letter
+            for (int i = inputString.Length-1 ; i >= 0 ; i--) //reverses the string 
             {
                 revString += inputString[i];
             }
             palindrome.RevString = revString;
-            if(revString == inputString)
+            if (revString == inputString)
             {
                 palindrome.IsPalindrome = true;
+            }
+            
+            if (palindrome.IsPalindrome)
+            {
                 palindrome.Message = $"{palindrome.InputString} when reversed is {revString}, the string is a palindrome!";
             }
             else
             {
-                palindrome.IsPalindrome = false;
                 palindrome.Message = $"{palindrome.InputString} when reversed is {revString}, the string is NOT a palindrome...";
             }
 
